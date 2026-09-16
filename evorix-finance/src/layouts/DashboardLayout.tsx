@@ -28,6 +28,8 @@ export const DashboardLayout = () => {
             Evorix Finance
           </h1>
         </div>
+        
+        {/* Menu Principal */}
         <nav className="flex-1 px-4 space-y-2 mt-4">
           <SidebarLink icon={<LayoutDashboard size={20} />} text="Dashboard" to="/" active={location.pathname === '/'} />
           <SidebarLink icon={<BarChart2 size={20} />} text="Análises" to="/analises" active={location.pathname === '/analises'} />
@@ -48,12 +50,13 @@ export const DashboardLayout = () => {
                 <h4 className="text-sm font-bold text-evo-textMain">Evorix Premium</h4>
                 <p className="text-[10px] text-evo-textSec mt-1 mb-3">Monte sua carteira com um especialista.</p>
               </div>
-              <button className="w-full bg-evo-blueMain hover:bg-evo-blueSec text-white text-xs font-bold py-2 rounded-lg transition-colors shadow-[0_0_10px_rgba(59,130,246,0.3)]">
+              <Link to="/assessoria" className="w-full bg-evo-blueMain hover:bg-evo-blueSec text-white text-xs font-bold py-2 rounded-lg transition-colors shadow-[0_0_10px_rgba(59,130,246,0.3)] block text-center">
                 Falar com Assessor
-              </button>
+              </Link>
             </div>
           </div>
 
+          {/* Links de Perfil e Configuração */}
           <div className="space-y-2">
             <SidebarLink icon={<User size={20} />} text="Seu Perfil" to="/perfil" active={location.pathname === '/perfil'} />
             <SidebarLink icon={<Settings size={20} />} text="Configurações" to="/config" active={location.pathname === '/config'} />

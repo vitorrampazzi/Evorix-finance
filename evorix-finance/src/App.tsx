@@ -3,6 +3,7 @@ import { DashboardLayout } from './layouts/DashboardLayout';
 import { Dashboard } from './pages/Dashboard';
 import { Analises } from './pages/analises';
 import { Carteira } from './pages/Carteira';
+import { Assessoria } from './pages/Assessoria';
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
           <Route index element={<Dashboard />} />
           <Route path="analises" element={<Analises />} />
           <Route path="carteira" element={<Carteira />} />
+          <Route path="assessoria" element={<Assessoria />} />
 
           {/* Rotas das páginas que ainda vamos criar (Em construção) */}
           <Route path="carteira" element={<div className="text-evo-textSec text-center mt-20 text-lg">Página Carteira em construção... 🚧</div>} />
