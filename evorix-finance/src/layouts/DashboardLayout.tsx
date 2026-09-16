@@ -30,7 +30,6 @@ export const DashboardLayout = () => {
         </div>
         <nav className="flex-1 px-4 space-y-2 mt-4">
           <SidebarLink icon={<LayoutDashboard size={20} />} text="Dashboard" to="/" active={location.pathname === '/'} />
-          <SidebarLink icon={<TrendingUp size={20} />} text="Investir" to="/investir" active={location.pathname === '/investir'} />
           <SidebarLink icon={<Briefcase size={20} />} text="Minha Carteira" to="/carteira" active={location.pathname === '/carteira'} />
           <SidebarLink icon={<BarChart2 size={20} />} text="Análises" to="/analises" active={location.pathname === '/analises'} />
         </nav>

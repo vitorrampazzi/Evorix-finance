@@ -3,6 +3,7 @@ import { Card } from '../components/Card';
 import { mockPortfolio, mockAssets } from '../data/mockData';
 import { ScoreIndicator } from '../components/ScoreIndicator';
 import { TrendingUp, DollarSign, Activity } from 'lucide-react';
+import { SpinningBitcoin } from '../components/SpinningBitcoin';
 
 interface MetricCardProps {
   title: string;
@@ -30,6 +31,16 @@ const MetricCard = ({ title, value, icon, highlight, isPositive = true }: Metric
 export const Dashboard = () => {
   return (
     <div className="space-y-6 max-w-7xl mx-auto">
+      
+      {/* Título e o Bitcoin Girando */}
+      <div className="flex items-center justify-between bg-evo-card border border-evo-border p-6 rounded-xl shadow-lg backdrop-blur-sm">
+        <div>
+          <h2 className="text-2xl font-bold text-evo-textMain">Visão Geral do Portfólio</h2>
+          <p className="text-evo-textSec mt-1">Acompanhe seus rendimentos e análises em tempo real.</p>
+        </div>
+        <SpinningBitcoin />
+      </div>
+
       {/* Top Metrics */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         <MetricCard 
