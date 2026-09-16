@@ -4,6 +4,7 @@ import { Dashboard } from './pages/Dashboard';
 import { Analises } from './pages/analises';
 import { Carteira } from './pages/Carteira';
 import { Assessoria } from './pages/Assessoria';
+import { Perfil } from './pages/Perfil';
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
           <Route path="analises" element={<Analises />} />
           <Route path="carteira" element={<Carteira />} />
           <Route path="assessoria" element={<Assessoria />} />
+          <Route path="perfil" element={<Perfil />} />
 
           {/* Rotas das páginas que ainda vamos criar (Em construção) */}
           <Route path="carteira" element={<div className="text-evo-textSec text-center mt-20 text-lg">Página Carteira em construção... 🚧</div>} />
