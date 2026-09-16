@@ -1,6 +1,19 @@
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  body {
+    background-image: radial-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+    background-size: 24px 24px;
+  }
+}
+
+.font-numbers {
+  font-family: 'JetBrains Mono', monospace;
+}
 
 body {
   background-color: #080B12;
@@ -33,3 +46,4 @@ body {
   animation: spinY 4s linear infinite;
   transform-style: preserve-3d;
 }
+

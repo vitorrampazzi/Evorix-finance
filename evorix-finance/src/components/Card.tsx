@@ -3,11 +3,22 @@ import React from 'react';
 interface CardProps {
   children: React.ReactNode;
   className?: string;
+  glow?: 'blue' | 'green' | 'yellow' | 'none';
 }
 
-export const Card = ({ children, className = '' }: CardProps) => {
+export const Card = ({ children, className = '', glow = 'none' }: CardProps) => {
+  const glowMap = {
+    blue: "shadow-[0_0_40px_-15px_rgba(59,130,246,0.15)] border-evo-blueMain/20",
+    green: "shadow-[0_0_40px_-15px_rgba(34,197,94,0.15)] border-evo-green/20",
+    yellow: "shadow-[0_0_40px_-15px_rgba(234,179,8,0.15)] border-yellow-500/20",
+    none: "border-white/5",
+  };
+
   return (
-    <div className={`bg-evo-card border border-evo-border rounded-xl p-5 shadow-lg backdrop-blur-sm ${className}`}>
+    <div className={`relative rounded-2xl bg-white/[0.02] backdrop-blur-xl p-5 border ${glowMap[glow]} 
+      before:absolute before:inset-0 before:rounded-2xl before:p-px 
+      before:bg-gradient-to-b before:from-white/10 before:to-transparent 
+      before:-z-10 before:content-[''] transition-all duration-300 ${className}`}>
       {children}
     </div>
   );

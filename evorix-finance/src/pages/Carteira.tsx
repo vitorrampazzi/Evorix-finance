@@ -20,7 +20,7 @@ export const Carteira = () => {
           <h1 className="text-2xl font-bold text-evo-textMain tracking-tight">Minha Carteira</h1>
           <p className="text-evo-textSec mt-1">Gerencie seus ativos e acompanhe a rentabilidade real do seu portfólio.</p>
         </div>
-        <button className="flex items-center gap-2 bg-evo-blueMain hover:bg-evo-blueSec text-evo-bgMain px-4 py-2.5 rounded-lg font-semibold transition-colors shadow-[0_0_15px_rgba(59,130,246,0.4)]">
+        <button className="flex items-center gap-2 bg-evo-blueMain hover:bg-evo-blueSec text-evo-bgMain px-4 py-2.5 rounded-lg font-semibold transition-colors shadow-[0_0_15px_rgba(59,130,246,0.3)]">
           <Plus size={20} />
           <span>Lançar Investimento</span>
         </button>
@@ -29,19 +29,19 @@ export const Carteira = () => {
       {/* Resumo Rápido */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
         {Object.entries(mockPortfolio.distribution).map(([key, value]) => (
-          <Card key={key} className="p-4 flex items-center justify-between">
+          <Card key={key} glow="none" className="p-4 flex items-center justify-between">
             <span className="text-evo-textSec capitalize font-medium">{key.replace('rendaFixa', 'Renda Fixa')}</span>
-            <span className="text-lg font-bold text-evo-textMain">{value}%</span>
+            <span className="text-lg font-bold text-evo-textMain font-numbers">{value}%</span>
           </Card>
         ))}
       </div>
 
       {/* Tabela de Posições */}
-      <Card className="overflow-hidden p-0">
+      <Card glow="none" className="overflow-hidden p-0">
         <div className="overflow-x-auto">
           <table className="w-full text-left border-collapse">
             <thead>
-              <tr className="bg-evo-bgSec/50 border-b border-evo-border text-evo-textSec text-xs uppercase tracking-wider">
+              <tr className="bg-white/[0.02] border-b border-white/5 text-evo-textSec text-xs uppercase tracking-wider">
                 <th className="p-4 font-medium">Ativo</th>
                 <th className="p-4 font-medium text-right">Qtd</th>
                 <th className="p-4 font-medium text-right">Preço Médio</th>
@@ -52,7 +52,7 @@ export const Carteira = () => {
                 <th className="p-4 font-medium text-center">Ações</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-evo-border">
+            <tbody className="divide-y divide-white/5">
               {posicoes.map((ativo) => {
                 const totalInvestido = ativo.qtd * ativo.precoMedio;
                 const saldoAtual = ativo.qtd * ativo.precoAtual;
@@ -61,29 +61,29 @@ export const Carteira = () => {
                 const isPositivo = lucro >= 0;
 
                 return (
-                  <tr key={ativo.ticker} className="hover:bg-evo-bgSec/30 transition-colors group">
+                  <tr key={ativo.ticker} className="hover:bg-white/[0.02] transition-colors group">
                     <td className="p-4">
                       <div className="flex flex-col">
                         <span className="font-bold text-evo-textMain group-hover:text-evo-blueMain transition-colors">{ativo.ticker}</span>
                         <span className="text-xs text-evo-textSec">{ativo.tipo}</span>
                       </div>
                     </td>
-                    <td className="p-4 text-right font-medium text-evo-textMain">{ativo.qtd}</td>
-                    <td className="p-4 text-right text-evo-textSec">R$ {ativo.precoMedio.toFixed(2).replace('.', ',')}</td>
-                    <td className="p-4 text-right text-evo-textSec">R$ {ativo.precoAtual.toFixed(2).replace('.', ',')}</td>
-                    <td className="p-4 text-right text-evo-textSec">R$ {totalInvestido.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}</td>
-                    <td className="p-4 text-right font-medium text-evo-textMain">R$ {saldoAtual.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}</td>
+                    <td className="p-4 text-right font-medium text-evo-textMain font-numbers">{ativo.qtd}</td>
+                    <td className="p-4 text-right text-evo-textSec font-numbers">R$ {ativo.precoMedio.toFixed(2).replace('.', ',')}</td>
+                    <td className="p-4 text-right text-evo-textSec font-numbers">R$ {ativo.precoAtual.toFixed(2).replace('.', ',')}</td>
+                    <td className="p-4 text-right text-evo-textSec font-numbers">R$ {totalInvestido.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}</td>
+                    <td className="p-4 text-right font-medium text-evo-textMain font-numbers">R$ {saldoAtual.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}</td>
                     <td className="p-4 text-right">
                       <div className={`flex flex-col items-end ${isPositivo ? 'text-evo-green' : 'text-evo-red'}`}>
-                        <span className="font-bold flex items-center gap-1">
+                        <span className="font-bold flex items-center gap-1 font-numbers">
                           {isPositivo ? <ArrowUpRight size={16} /> : <ArrowDownRight size={16} />}
                           R$ {Math.abs(lucro).toLocaleString('pt-BR', { minimumFractionDigits: 2 })}
                         </span>
-                        <span className="text-xs font-medium">{isPositivo ? '+' : ''}{rentabilidade.toFixed(2)}%</span>
+                        <span className="text-xs font-medium font-numbers">{isPositivo ? '+' : ''}{rentabilidade.toFixed(2)}%</span>
                       </div>
                     </td>
                     <td className="p-4 text-center">
-                      <button className="text-evo-textSec hover:text-evo-blueMain transition-colors p-2 rounded-lg hover:bg-evo-bgMain">
+                      <button className="text-evo-textSec hover:text-evo-blueMain transition-colors p-2 rounded-lg hover:bg-white/5">
                         <MoreHorizontal size={20} />
                       </button>
                     </td>

@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { motion } from 'framer-motion';
 import { Card } from '../components/Card';
 import { ScoreIndicator } from '../components/ScoreIndicator';
 import { mockAssets } from '../data/mockData';
@@ -55,7 +56,7 @@ export const Analises = () => {
       {/* Lista de Top Oportunidades */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-4">
         {ativosOrdenados.map((asset, index) => (
-          <Card key={asset.ticker} className="flex flex-col relative overflow-hidden group hover:border-evo-blueMain/50 transition-all cursor-pointer">
+          <Card key={asset.ticker} glow={filtroAtivo === 'score' && index === 0 ? 'blue' : 'none'} className="flex flex-col relative overflow-hidden group hover:border-evo-blueMain/50 transition-all cursor-pointer">
             
             {/* Tag de Posição do Ranking */}
             {filtroAtivo === 'score' && index < 3 && (
@@ -69,7 +70,9 @@ export const Analises = () => {
                 <h3 className="text-xl font-bold text-evo-textMain group-hover:text-evo-blueMain transition-colors">{asset.ticker}</h3>
                 <p className="text-sm text-evo-textSec">{asset.name}</p>
               </div>
-              <ScoreIndicator score={asset.score} />
+              <div className="font-numbers">
+                <ScoreIndicator score={asset.score} />
+              </div>
             </div>
 
             <div className="space-y-3 mb-6">
@@ -79,7 +82,7 @@ export const Analises = () => {
               <BarraIndicador label="Dividendos" valor={asset.indicators.dividendos} />
             </div>
 
-            <div className="mt-auto pt-4 border-t border-evo-border flex justify-between items-center">
+            <div className="mt-auto pt-4 border-t border-white/5 flex justify-between items-center">
               <div className="flex flex-col">
                 <span className="text-xs text-evo-textSec">Classificação</span>
                 <span className={`text-sm font-bold ${
@@ -107,7 +110,7 @@ const FiltroBtn = ({ ativo, onClick, icon, texto }: any) => (
     className={`flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-all ${
       ativo 
       ? 'bg-evo-blueMain/20 text-evo-blueMain border border-evo-blueMain/50 shadow-[0_0_10px_rgba(59,130,246,0.2)]' 
-      : 'bg-evo-bgSec text-evo-textSec border border-evo-border hover:border-evo-textSec hover:text-evo-textMain'
+      : 'bg-white/[0.02] text-evo-textSec border border-white/5 hover:border-white/20 hover:text-evo-textMain'
     }`}
   >
     {icon}
@@ -115,7 +118,7 @@ const FiltroBtn = ({ ativo, onClick, icon, texto }: any) => (
   </button>
 );
 
-// Componente para as famosas barrinhas de progresso
+// Componente para as barrinhas de progresso animadas via Framer Motion
 const BarraIndicador = ({ label, valor }: { label: string, valor: number }) => {
   const getCorBarra = (v: number) => {
     if (v >= 80) return 'bg-evo-green shadow-[0_0_8px_rgba(0,214,143,0.5)]';
@@ -128,12 +131,14 @@ const BarraIndicador = ({ label, valor }: { label: string, valor: number }) => {
     <div className="flex flex-col gap-1">
       <div className="flex justify-between text-xs">
         <span className="text-evo-textSec">{label}</span>
-        <span className="text-evo-textMain font-medium">{valor}%</span>
+        <span className="text-evo-textMain font-medium font-numbers">{valor}%</span>
       </div>
-      <div className="w-full h-1.5 bg-evo-bgMain rounded-full overflow-hidden">
-        <div 
-          className={`h-full rounded-full transition-all duration-1000 ${getCorBarra(valor)}`}
-          style={{ width: `${valor}%` }}
+      <div className="w-full h-1.5 bg-evo-bgMain/60 rounded-full overflow-hidden">
+        <motion.div 
+          className={`h-full rounded-full ${getCorBarra(valor)}`}
+          initial={{ width: 0 }}
+          animate={{ width: `${valor}%` }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
         />
       </div>
     </div>
