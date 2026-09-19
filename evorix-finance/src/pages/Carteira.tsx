@@ -1,9 +1,10 @@
+// src/pages/Carteira.tsx
 import { Plus, MoreHorizontal, ArrowUpRight, ArrowDownRight } from 'lucide-react';
 import { Card } from '../components/Card';
+import { OrbitCoins } from '../components/OrbitCoins';
 import { mockPortfolio } from '../data/mockData';
 
 export const Carteira = () => {
-  // Simulando os ativos que o usuário já comprou na corretora dele
   const posicoes = [
     { ticker: 'PETR4', nome: 'Petrobras PN', tipo: 'Ações', qtd: 200, precoMedio: 32.50, precoAtual: 38.45 },
     { ticker: 'ITUB4', nome: 'Itaú Unibanco', tipo: 'Ações', qtd: 150, precoMedio: 29.10, precoAtual: 34.12 },
@@ -15,15 +16,19 @@ export const Carteira = () => {
   return (
     <div className="space-y-6 max-w-7xl mx-auto">
       {/* Header com botão de Adicionar */}
-      <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
-        <div>
-          <h1 className="text-2xl font-bold text-evo-textMain tracking-tight">Minha Carteira</h1>
-          <p className="text-evo-textSec mt-1">Gerencie seus ativos e acompanhe a rentabilidade real do seu portfólio.</p>
+      <div className="flex items-center justify-between bg-evo-card border border-evo-border p-6 rounded-xl shadow-lg backdrop-blur-sm relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-r from-evo-green/5 to-transparent pointer-events-none"></div>
+        <div className="relative z-10 flex flex-col md:flex-row md:items-end justify-between gap-4 w-full">
+          <div>
+            <h1 className="text-2xl font-bold text-evo-textMain tracking-tight">Minha Carteira</h1>
+            <p className="text-evo-textSec mt-1">Gerencie seus ativos e acompanhe a rentabilidade real do seu portfólio.</p>
+          </div>
+          <button className="flex items-center gap-2 bg-evo-blueMain hover:bg-evo-blueSec text-evo-bgMain px-4 py-2.5 rounded-lg font-semibold transition-colors shadow-[0_0_15px_rgba(59,130,246,0.3)]">
+            <Plus size={20} />
+            <span>Lançar Investimento</span>
+          </button>
         </div>
-        <button className="flex items-center gap-2 bg-evo-blueMain hover:bg-evo-blueSec text-evo-bgMain px-4 py-2.5 rounded-lg font-semibold transition-colors shadow-[0_0_15px_rgba(59,130,246,0.3)]">
-          <Plus size={20} />
-          <span>Lançar Investimento</span>
-        </button>
+        <OrbitCoins variant="portfolio" size="sm" />
       </div>
 
       {/* Resumo Rápido */}

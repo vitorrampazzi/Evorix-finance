@@ -1,5 +1,7 @@
+// src/pages/Assessoria.tsx
 import { Star, Shield, TrendingUp, CheckCircle, Calendar, ArrowRight } from 'lucide-react';
 import { Card } from '../components/Card';
+import { OrbitCoins } from '../components/OrbitCoins';
 
 export const Assessoria = () => {
   const assessores = [
@@ -11,8 +13,11 @@ export const Assessoria = () => {
   return (
     <div className="space-y-8 max-w-7xl mx-auto">
       {/* Hero Section */}
-      <div className="text-center space-y-4 py-8 relative">
+      <div className="flex flex-col items-center text-center gap-4 py-8 relative">
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-3/4 h-32 bg-evo-blueMain/20 blur-[100px] rounded-full pointer-events-none"></div>
+        <div className="relative z-10">
+          <OrbitCoins variant="premium" size="hero" />
+        </div>
         <h1 className="text-3xl md:text-5xl font-bold text-evo-textMain tracking-tight relative z-10">
           Eleve seus investimentos com a <span className="bg-gradient-to-r from-evo-blueMain to-evo-green bg-clip-text text-transparent">Assessoria Evorix</span>
         </h1>
@@ -23,7 +28,6 @@ export const Assessoria = () => {
 
       {/* Grid de Benefícios e Plano */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        {/* Benefícios */}
         <div className="lg:col-span-2 space-y-4">
           <h3 className="text-xl font-bold text-evo-textMain border-b border-evo-border pb-2">Por que ter um assessor?</h3>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
@@ -45,7 +49,6 @@ export const Assessoria = () => {
           </div>
         </div>
 
-        {/* Card de Preço (Plano) */}
         <Card className="relative overflow-hidden border-evo-blueMain/50 bg-gradient-to-b from-evo-bgSec to-evo-card">
           <div className="absolute top-0 inset-x-0 h-1 bg-gradient-to-r from-evo-blueMain to-evo-green"></div>
           <div className="p-2">
@@ -86,7 +89,7 @@ export const Assessoria = () => {
               <h4 className="font-bold text-evo-textMain text-lg">{assessor.nome}</h4>
               <span className="text-xs font-medium text-evo-blueMain mb-2">{assessor.credencial}</span>
               <p className="text-sm text-evo-textSec mb-6">{assessor.especialidade}</p>
-              
+
               <button className="mt-auto w-full border border-evo-border hover:border-evo-blueMain hover:text-evo-blueMain bg-evo-bgSec px-4 py-2 rounded-lg text-sm font-medium transition-colors flex items-center justify-center gap-2">
                 <Calendar size={16} /> Agendar Papo
               </button>
@@ -96,4 +99,4 @@ export const Assessoria = () => {
       </div>
     </div>
   );
-};  
+};
