@@ -1,9 +1,10 @@
+// src/pages/Dashboard.tsx
 import React from 'react';
 import { Card } from '../components/Card';
 import { mockPortfolio, mockAssets } from '../data/mockData';
 import { ScoreIndicator } from '../components/ScoreIndicator';
 import { TrendingUp, DollarSign, Activity, Clock } from 'lucide-react';
-import { SpinningBitcoin } from '../components/SpinningBitcoin';
+import { OrbitCoins } from '../components/OrbitCoins';
 import { AlgoInsight } from '../components/AlgoInsight';
 
 interface MetricCardProps {
@@ -20,7 +21,6 @@ const MetricCard = ({ title, value, icon, highlight, isPositive = true }: Metric
       {React.cloneElement(icon, { size: 100 })}
     </div>
     <span className="text-evo-textSec font-medium text-sm z-10">{title}</span>
-    {/* Aplicando a fonte de números estilo terminal aqui */}
     <span className="text-3xl font-bold text-evo-textMain z-10 font-numbers tracking-tight">{value}</span>
     {highlight && (
       <span className={`text-xs font-semibold z-10 font-numbers ${isPositive ? 'text-evo-green' : 'text-evo-red'}`}>
@@ -33,8 +33,8 @@ const MetricCard = ({ title, value, icon, highlight, isPositive = true }: Metric
 export const Dashboard = () => {
   return (
     <div className="space-y-6 max-w-7xl mx-auto">
-      
-      {/* Título e o Bitcoin Girando com Timestamp */}
+
+      {/* Título e a animação orbital com Timestamp */}
       <div className="flex items-center justify-between bg-evo-card border border-evo-border p-6 rounded-xl shadow-lg backdrop-blur-sm relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-r from-evo-blueMain/5 to-transparent pointer-events-none"></div>
         <div className="relative z-10">
@@ -46,28 +46,28 @@ export const Dashboard = () => {
           </div>
           <p className="text-evo-textSec">Acompanhe seus rendimentos e análises em tempo real.</p>
         </div>
-        <SpinningBitcoin />
+        <OrbitCoins variant="wealth" size="hero" />
       </div>
 
       {/* Top Metrics */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <MetricCard 
-          title="Patrimônio Total" 
-          value={`R$ ${mockPortfolio.totalEquity.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}`} 
-          icon={<DollarSign />} 
-          highlight="+2.4% hoje" 
+        <MetricCard
+          title="Patrimônio Total"
+          value={`R$ ${mockPortfolio.totalEquity.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}`}
+          icon={<DollarSign />}
+          highlight="+2.4% hoje"
         />
-        <MetricCard 
-          title="Rentabilidade Total" 
-          value={`R$ ${mockPortfolio.totalReturn.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}`} 
-          icon={<TrendingUp />} 
-          highlight={`+${mockPortfolio.returnPercentage}%`} 
-          isPositive 
+        <MetricCard
+          title="Rentabilidade Total"
+          value={`R$ ${mockPortfolio.totalReturn.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}`}
+          icon={<TrendingUp />}
+          highlight={`+${mockPortfolio.returnPercentage}%`}
+          isPositive
         />
-        <MetricCard 
-          title="Volatilidade (Carteira)" 
-          value="12.4%" 
-          icon={<Activity />} 
+        <MetricCard
+          title="Volatilidade (Carteira)"
+          value="12.4%"
+          icon={<Activity />}
         />
       </div>
 
@@ -76,14 +76,14 @@ export const Dashboard = () => {
         <Card glow="blue" className="lg:col-span-2">
           <h3 className="text-lg font-semibold mb-5 border-b border-evo-border pb-3">Insights da sua Carteira</h3>
           <div className="space-y-4">
-            <AlgoInsight 
+            <AlgoInsight
               type="warning"
               text={<span><strong className="text-evo-textMain">Alerta de Setor:</strong> Você possui exposição elevada ao setor financeiro (35%), o que eleva seu risco direcional em caso de queda nos juros.</span>}
               ctaLabel="Fale com um CFP sobre diversificação"
               to="/assessoria"
             />
-            
-            <AlgoInsight 
+
+            <AlgoInsight
               type="info"
               text={<span><strong className="text-evo-textMain">Oportunidade Detectada:</strong> O algoritmo identificou 3 FIIs de logística sendo negociados abaixo do valor patrimonial com dividend yield superior a 10%.</span>}
               ctaLabel="Ver relatório completo com Assessor"
